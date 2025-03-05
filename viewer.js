@@ -1,9 +1,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-class ProductViewer {
-    constructor() {
+export class ProductViewer {
+    constructor(productId) {
+        this.productId = productId;
         this.container = document.getElementById('product-viewer');
+        if (!this.container) return;
+
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -11,7 +15,7 @@ class ProductViewer {
             0.1,
             1000
         );
-        
+
         this.renderer = new THREE.WebGLRenderer({ 
             antialias: true,
             alpha: true 
@@ -20,22 +24,22 @@ class ProductViewer {
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        this.renderer.outputEncoding = THREE.sRGBEncoding;
+        this.renderer.outputColorSpace = THREE.SRGBColorSpace;
         this.container.appendChild(this.renderer.domElement);
-        
+
         // Set scene properties
         this.scene.background = new THREE.Color(0xf8f9fa);
         
         // Initialize clock for animations
         this.clock = new THREE.Clock();
         
-        // Enhanced camera settings
+        // Set up camera
         this.camera.position.set(0, 2, 5);
-        
+
         // Add lights
         this.setupLights();
-        
-        // Add controls - Fix OrbitControls usage
+
+        // Add controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
@@ -47,7 +51,7 @@ class ProductViewer {
         this.controls.autoRotateSpeed = 1.0;
         this.controls.maxPolarAngle = Math.PI / 1.8;
         this.controls.minPolarAngle = Math.PI / 3;
-        
+
         // Add floor
         this.addFloor();
         
@@ -60,17 +64,20 @@ class ProductViewer {
         // Initialize animation mixer
         this.mixer = null;
         this.animations = [];
-        
-        // Create example geometry (replace this with your 3D model)
-        this.createDemoProduct();
-        
+
+        // Load the appropriate 3D model based on productId
+        this.loadModel();
+
         // Setup event listeners
         this.setupEventListeners();
-        
-        // Start animation loop
+
+        // Animation
         this.animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => this.onWindowResize(), false);
     }
-    
+
     setupLoadingManager() {
         const loadingScreen = document.createElement('div');
         loadingScreen.className = 'loading-screen';
@@ -90,36 +97,17 @@ class ProductViewer {
             loadingScreen.style.display = 'none';
         };
     }
-    
+
     setupLights() {
-        // Ambient light
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         this.scene.add(ambientLight);
-        
-        // Main directional light
-        const mainLight = new THREE.DirectionalLight(0xffffff, 1);
-        mainLight.position.set(10, 10, 10);
-        mainLight.castShadow = true;
-        mainLight.shadow.mapSize.width = 2048;
-        mainLight.shadow.mapSize.height = 2048;
-        this.scene.add(mainLight);
-        
-        // Fill light
-        const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        fillLight.position.set(-5, 5, -5);
-        this.scene.add(fillLight);
-        
-        // Add spotlight for dramatic effect
-        const spotlight = new THREE.SpotLight(0xffffff, 0.7);
-        spotlight.position.set(0, 10, 0);
-        spotlight.angle = Math.PI / 4;
-        spotlight.penumbra = 0.1;
-        spotlight.decay = 2;
-        spotlight.distance = 200;
-        spotlight.castShadow = true;
-        this.scene.add(spotlight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(10, 10, 10);
+        directionalLight.castShadow = true;
+        this.scene.add(directionalLight);
     }
-    
+
     addFloor() {
         const floorGeometry = new THREE.CircleGeometry(20, 32);
         const floorMaterial = new THREE.MeshStandardMaterial({
@@ -163,65 +151,45 @@ class ProductViewer {
             });
         }
     }
-    
-    createDemoProduct() {
-        // Create a more complex demo product (sneaker-like shape)
-        const group = new THREE.Group();
-        
-        // Base/Sole
-        const sole = new THREE.Mesh(
-            new THREE.BoxGeometry(3, 0.3, 1.2),
-            new THREE.MeshPhongMaterial({ 
-                color: 0x2c5282,
-                shininess: 30
-            })
-        );
-        sole.castShadow = true;
-        sole.receiveShadow = true;
-        
-        // Upper part
-        const upper = new THREE.Mesh(
-            new THREE.BoxGeometry(2.8, 1.2, 1),
-            new THREE.MeshPhongMaterial({ 
-                color: 0x2c5282,
-                shininess: 30
-            })
-        );
-        upper.position.y = 0.75;
-        upper.castShadow = true;
-        upper.receiveShadow = true;
-        
-        // Add details
-        const details = new THREE.Mesh(
-            new THREE.TorusGeometry(0.3, 0.1, 16, 100),
-            new THREE.MeshPhongMaterial({ 
-                color: 0xffffff,
-                shininess: 50
-            })
-        );
-        details.rotation.x = Math.PI / 2;
-        details.position.set(0, 0.8, 0.5);
-        details.castShadow = true;
-        
-        group.add(sole);
-        group.add(upper);
-        group.add(details);
-        
-        // Position the entire group
-        group.position.y = 1;
-        
-        this.product = group;
-        this.scene.add(this.product);
-    }
-    
-    setupEventListeners() {
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+
+    loadModel() {
+        const modelPaths = {
+            'sneaker': '/models/sneaker.glb',
+            'watch': '/models/watch.glb',
+            'headphones': '/models/headphones.glb'
+        };
+
+        const modelPath = modelPaths[this.productId];
+        if (!modelPath) {
+            console.error('No model found for product:', this.productId);
+            return;
+        }
+
+        const loader = new GLTFLoader();
+        loader.load(modelPath, (gltf) => {
+            this.product = gltf.scene;
+            this.scene.add(this.product);
+            
+            // Center and scale the model
+            const box = new THREE.Box3().setFromObject(this.product);
+            const center = box.getCenter(new THREE.Vector3());
+            const size = box.getSize(new THREE.Vector3());
+            
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 2 / maxDim;
+            this.product.scale.setScalar(scale);
+            
+            this.product.position.sub(center.multiplyScalar(scale));
+            
+            // Hide loading screen
+            const loadingScreen = this.container.querySelector('.loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
         });
-        
+    }
+
+    setupEventListeners() {
         // Reset view button
         document.getElementById('reset-view').addEventListener('click', () => {
             this.resetView();
@@ -231,29 +199,41 @@ class ProductViewer {
         document.getElementById('add-to-cart').addEventListener('click', () => {
             alert('Product added to cart!');
         });
+
+        // Color buttons
+        const colorButtons = document.querySelectorAll('.color-btn');
+        colorButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Remove active class from all buttons
+                colorButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                e.target.classList.add('active');
+                // Change product color
+                this.changeProductColor(e.target.dataset.color);
+            });
+        });
     }
     
     resetView() {
         this.camera.position.set(0, 0, 5);
         this.controls.reset();
     }
-    
+
+    onWindowResize() {
+        this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    }
+
     animate() {
         requestAnimationFrame(() => this.animate());
         
-        const delta = this.clock.getDelta();
-        
-        // Update controls
-        this.controls.update();
-        
-        // Update animations
-        if (this.mixer) {
-            this.mixer.update(delta);
+        if (this.controls) {
+            this.controls.update();
         }
         
-        // Add floating animation
         if (this.product) {
-            this.product.position.y = Math.sin(Date.now() * 0.001) * 0.1 + 0.5;
+            this.product.rotation.y += 0.01;
         }
         
         this.renderer.render(this.scene, this.camera);
@@ -262,5 +242,8 @@ class ProductViewer {
 
 // Initialize the viewer when the page loads
 window.addEventListener('DOMContentLoaded', () => {
-    new ProductViewer();
-}); 
+    const viewer = new ProductViewer();
+});
+
+// Export the class if needed
+export default ProductViewer; 

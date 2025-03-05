@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Product Showcase</title>
+    <title>ShopVerse</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,10 +11,10 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">3D Showcase</a>
+            <a href="#" class="logo">ShopVerse</a>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#products">Products</a>
+                <a href="products.html">Products</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -23,16 +23,23 @@
 
     <!-- Hero Section -->
     <header class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/product-showcase.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Experience Products in 3D</h1>
-            <p>Revolutionizing online shopping with immersive 3D product visualization</p>
-            <a href="#products" class="cta-button">Explore Products</a>
+            <div class="hero-text">
+                <h1>Shop with Confidence</h1>
+                <p>Experience immersive online shopping with interactive product views</p>
+                <a href="products.html" class="cta-button">Explore Products</a>
+            </div>
         </div>
     </header>
 
     <!-- Features Section -->
     <section id="features" class="features">
-        <h2>Why Choose 3D Showcase?</h2>
+        <h2>Why Choose ShopVerse?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <i class="fas fa-cube"></i>
@@ -54,25 +61,6 @@
                 <h3>AR Ready</h3>
                 <p>View products in your space with AR technology</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Product Showcase -->
-    <section id="products" class="product-section">
-        <div class="container">
-            <div class="product-info">
-                <h1>Premium Sneaker</h1>
-                <p class="price">$199.99</p>
-                <p class="description">
-                    Experience our latest sneaker in 3D. Rotate, zoom, and explore every detail
-                    of this premium product. Use your mouse to interact with the model.
-                </p>
-                <div class="controls">
-                    <button id="reset-view">Reset View</button>
-                    <button id="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div id="product-viewer"></div>
         </div>
     </section>
 
@@ -129,13 +117,13 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>3D Showcase</h3>
-                <p>Revolutionizing online shopping with immersive 3D experiences.</p>
+                <h3>ShopVerse</h3>
+                <p>Your premier destination for immersive online shopping.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <a href="#features">Features</a>
-                <a href="#products">Products</a>
+                <a href="products.html">Products</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -150,7 +138,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 3D Showcase. All rights reserved.</p>
+            <p>&copy; 2024 ShopVerse. All rights reserved.</p>
         </div>
     </footer>
 

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ShopVerse</a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Header -->
+    <header class="page-header">
+        <h1>Our Products</h1>
+        <p>Explore our collection of premium products</p>
+    </header>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <button class="category-btn active" data-category="all">All Products</button>
+        <button class="category-btn" data-category="men">Men</button>
+        <button class="category-btn" data-category="women">Women</button>
+        <button class="category-btn" data-category="kids">Kids</button>
+        <button class="category-btn" data-category="accessories">Accessories</button>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="products-grid">
+        <!-- Men's Section -->
+        <div class="category-section" id="men">
+            <h2 class="category-title">Men's Collection</h2>
+            <div class="products-row">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/mens-sneaker1.png" alt="Men's Running Shoe">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=mens-sneaker1" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Pro Runner X1</h3>
+                        <p class="price">$199.99</p>
+                        <p class="product-description">Professional running shoe with advanced cushioning.</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/mens-casual1.png" alt="Men's Casual Shoe">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=mens-casual1" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Urban Walker</h3>
+                        <p class="price">$159.99</p>
+                        <p class="product-description">Comfortable casual shoe for everyday wear.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Women's Section -->
+        <div class="category-section" id="women">
+            <h2 class="category-title">Women's Collection</h2>
+            <div class="products-row">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/womens-sneaker1.png" alt="Women's Athletic Shoe">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=womens-sneaker1" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Flex Runner Elite</h3>
+                        <p class="price">$189.99</p>
+                        <p class="product-description">Lightweight running shoe for maximum performance.</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/womens-casual1.png" alt="Women's Fashion Sneaker">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=womens-casual1" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>City Style Plus</h3>
+                        <p class="price">$149.99</p>
+                        <p class="product-description">Trendy and comfortable urban sneaker.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kids' Section -->
+        <div class="category-section" id="kids">
+            <h2 class="category-title">Kids' Collection</h2>
+            <div class="products-row">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/kids-sneaker1.png" alt="Kids' Sport Shoe">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=kids-sneaker1" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Junior Sport Pro</h3>
+                        <p class="price">$89.99</p>
+                        <p class="product-description">Durable and comfortable kids' athletic shoe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessories Section -->
+        <div class="category-section" id="accessories">
+            <h2 class="category-title">Accessories</h2>
+            <div class="products-row">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/watch-preview.png" alt="Smart Watch">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=watch" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Watch Pro</h3>
+                        <p class="price">$299.99</p>
+                        <p class="product-description">Next-generation smartwatch with customizable faces.</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/headphone-preview.png" alt="Wireless Headphones">
+                        <div class="product-overlay">
+                            <a href="product-detail.html?product=headphones" class="view-3d-btn">View in 3D</a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Pro Audio X1</h3>
+                        <p class="price">$249.99</p>
+                        <p class="product-description">Premium wireless headphones with noise cancellation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShopVerse</h3>
+                <p>Your premier destination for immersive online shopping.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html#features">Features</a>
+                <a href="products.html">Products</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ShopVerse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category filter functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const categories = document.querySelectorAll('.category-section');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const category = btn.dataset.category;
+                    
+                    // Show/hide categories based on selection
+                    categories.forEach(cat => {
+                        if (category === 'all') {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = cat.id === category ? 'block' : 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

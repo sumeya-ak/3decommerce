@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - ShopVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js",
+            "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ShopVerse</a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="product-info">
+                <h1>Premium Sneaker</h1>
+                <p class="price">$199.99</p>
+                <p class="description">
+                    Experience our latest sneaker in 3D. Rotate, zoom, and explore every detail
+                    of this premium product. Use your mouse to interact with the model.
+                </p>
+                <div class="color-picker">
+                    <h3>Choose Color</h3>
+                    <div class="color-options">
+                        <button class="color-btn active" data-color="#2c5282" style="background-color: #2c5282"></button>
+                        <button class="color-btn" data-color="#e53e3e" style="background-color: #e53e3e"></button>
+                        <button class="color-btn" data-color="#38a169" style="background-color: #38a169"></button>
+                        <button class="color-btn" data-color="#d69e2e" style="background-color: #d69e2e"></button>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="reset-view" class="control-btn">Reset View</button>
+                    <button id="add-to-cart" class="primary-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div id="product-viewer" class="viewer-container">
+                <div class="loading-screen">
+                    <div class="spinner"></div>
+                    <p>Loading 3D Model...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Copy the footer content from index.html -->
+    </footer>
+
+    <script type="module">
+        import { ProductViewer } from './viewer.js';
+        
+        // Get the product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('product');
+        
+        // Initialize the viewer with the product ID
+        window.addEventListener('DOMContentLoaded', () => {
+            const viewer = new ProductViewer(productId);
+        });
+    </script>
+</body>
+</html> 
