@@ -1,8 +1,11 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/products", "destination": "/products.html" },
-    { "source": "/product-detail", "destination": "/product-detail.html" },
-    { "source": "/(.*)", "destination": "/$1" }
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/products", "dest": "/products.html" },
+    { "src": "/product-detail", "dest": "/product-detail.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 } 
