@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Product Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">3D Showcase</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Experience Products in 3D</h1>
+            <p>Revolutionizing online shopping with immersive 3D product visualization</p>
+            <a href="#products" class="cta-button">Explore Products</a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Why Choose 3D Showcase?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-cube"></i>
+                <h3>360° Viewing</h3>
+                <p>Examine products from every angle with interactive 3D controls</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Color Customization</h3>
+                <p>Try different colors and finishes in real-time</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Friendly</h3>
+                <p>Perfect experience on any device</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-vr-cardboard"></i>
+                <h3>AR Ready</h3>
+                <p>View products in your space with AR technology</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="product-section">
+        <div class="container">
+            <div class="product-info">
+                <h1>Premium Sneaker</h1>
+                <p class="price">$199.99</p>
+                <p class="description">
+                    Experience our latest sneaker in 3D. Rotate, zoom, and explore every detail
+                    of this premium product. Use your mouse to interact with the model.
+                </p>
+                <div class="controls">
+                    <button id="reset-view">Reset View</button>
+                    <button id="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div id="product-viewer"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>About Our Technology</h2>
+            <p>We're revolutionizing e-commerce with cutting-edge 3D visualization technology. Our platform enables customers to examine products in detail before purchase, reducing returns and increasing satisfaction.</p>
+            <div class="stats">
+                <div class="stat">
+                    <h3>50%</h3>
+                    <p>Reduced Returns</p>
+                </div>
+                <div class="stat">
+                    <h3>2x</h3>
+                    <p>Conversion Rate</p>
+                </div>
+                <div class="stat">
+                    <h3>10M+</h3>
+                    <p>Products Viewed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Tech Street, Digital City</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contact@3dshowcase.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 234 567 890</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>3D Showcase</h3>
+                <p>Revolutionizing online shopping with immersive 3D experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#features">Features</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 3D Showcase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/viewer.js"></script>
+</body>
+</html> 
